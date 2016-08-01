@@ -17,29 +17,26 @@ public class Get extends Thread
 {
 	private String str;
 	
-	public Get(){}
-	
-	public String getStr()
-	{
-		return str;
-	}
-
-	public void setStr(String str)
-	{
-		this.str = str;
-	}
-
 	@Override
 	public void run()
 	{
 		try
 		{
+			/*
+			 * 打开连接
+			 */
 			URL url = new URL("http://hq.sinajs.cn/list=sz300170");
 			URLConnection uc = url.openConnection();
 			
+			/*
+			 * 创建输入流
+			 */
 			InputStreamReader isr = new InputStreamReader(uc.getInputStream(), "GBK");
 			BufferedReader br = new BufferedReader(isr);
 			
+			/*
+			 * 读取输入的字符串
+			 */
 			String line = null;
 			StringBuilder sb = new StringBuilder();
 			while((line = br.readLine()) != null)
